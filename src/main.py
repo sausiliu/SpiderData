@@ -2,6 +2,7 @@ import re
 import ssl
 from urllib import request
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
 
 context = ssl._create_unverified_context()
 url = "https://blog.csdn.net/richard_liujh"
@@ -62,4 +63,13 @@ if __name__ == "__main__":
         # print('')
 
     # print(mainBox.main.prettify())
+    vals = [1, 2, 3, 4]  # 创建数据系列
+    fig, ax = plt.subplots()  # 创建子图
+    labels = 'A', 'B', 'C', 'D'
+    colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
+    explode = (0, 0.1, 0, 0)
+    ax.pie(vals, explode=explode, labels=labels, colors=colors,
+           autopct='%1.1f%%', shadow=True, startangle=90, radius=1.2)
+    ax.set(aspect="equal", title='Pie plot with `ax.pie`')  # 设置标题以及图形的对称
+    plt.show()
 

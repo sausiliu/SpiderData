@@ -10,4 +10,5 @@
 ## pip install
 * lxml
 * BeautifulSoup4
+* matplotlib
 
