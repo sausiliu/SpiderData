@@ -9,4 +9,5 @@
 
 ## pip install
 * lxml
+* BeautifulSoup4
 
