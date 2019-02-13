@@ -15,12 +15,23 @@ if __name__ == "__main__":
     soup = BeautifulSoup(html, "lxml")
     # print(soup.prettify())
     # print(soup.body)
-    print("-------------------------------------")
     print("dl:")
     # print(soup.dl)
+
+    for center in soup.find_all('dl', class_='text-center'):
+        print(center)
+
     center = soup.find('dl', class_='text-center', id='fanBox')
     print(center)
-    fan = int(center.find('span', id="fan").get_text())
+
+    temp = center.find('span', id="fan")
+    fan_str = center.find('span', id="fan").get_text()
+    fan = int(fan_str)
+
+    print("-------------------------------------")
+    print(temp)
+    print(type(temp))
+    print(fan_str)
     print("fans:", fan)
 
     # print(soup.title.name)
@@ -33,4 +44,22 @@ if __name__ == "__main__":
     #         print(p_tag['class'])
     print("-------------------------------------")
 
-    print(soup.select('.read'))
+    mainBox = soup.body.find('div', id="mainBox")  # mainBox has main, aside, script ...
+    article_list = mainBox.main.find('div', class_='article-list')
+
+    for article in article_list.find_all('div', class_='article-item-box csdn-tracking-statistics'):
+        article_name = article.h4.a.get_text()
+        num_info = article.find('div', class_='info-box d-flex align-content-center')
+
+        # print(num_info)
+        read_info = num_info.find('span', class_='num')
+        if read_info is None:
+            continue
+
+        read_num = read_info.get_text()
+        print(article_name)
+        print(read_num)
+        # print('')
+
+    # print(mainBox.main.prettify())
+
