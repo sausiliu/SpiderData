@@ -48,6 +48,9 @@ if __name__ == "__main__":
     mainBox = soup.body.find('div', id="mainBox")  # mainBox has main, aside, script ...
     article_list = mainBox.main.find('div', class_='article-list')
 
+    labels_list = []
+    val_list = []
+
     for article in article_list.find_all('div', class_='article-item-box csdn-tracking-statistics'):
         article_name = article.h4.a.get_text()
         num_info = article.find('div', class_='info-box d-flex align-content-center')
@@ -57,19 +60,23 @@ if __name__ == "__main__":
         if read_info is None:
             continue
 
-        read_num = read_info.get_text()
+        read_num = int(read_info.get_text())
         print(article_name)
         print(read_num)
+        labels_list.append(article_name)
+        val_list.append(read_num)
         # print('')
 
     # print(mainBox.main.prettify())
+    print(labels_list)
+    print(val_list)
     vals = [1, 2, 3, 4]  # 创建数据系列
     fig, ax = plt.subplots()  # 创建子图
     labels = 'A', 'B', 'C', 'D'
     # colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
-    explode = (0, 0.1, 0, 0)
-    ax.pie(vals, explode=explode, labels=labels,
-           autopct='%1.1f%%', shadow=True, startangle=90, radius=1.2)
+    # explode = (0, 0.1, 0, 0)
+    # ax.pie(val_list, explode=explode, labels=labels_list, colors=colors,
+    ax.pie(val_list, labels=labels_list, autopct='%1.1f%%', shadow=True, startangle=90, radius=1.2)
     ax.set(aspect="equal", title='Pie plot with `ax.pie`')  # 设置标题以及图形的对称
     plt.show()
 
