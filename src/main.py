@@ -4,6 +4,12 @@ from urllib import request
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 
+from pylab import mpl
+
+mpl.rcParams['font.sans-serif'] = ['FangSong']
+mpl.rcParams['axes.unicode_minus'] = False
+print(mpl.font_manager.get_cachedir())
+
 context = ssl._create_unverified_context()
 url = "https://blog.csdn.net/richard_liujh"
 
@@ -25,20 +31,16 @@ if __name__ == "__main__":
     center = soup.find('dl', class_='text-center', id='fanBox')
     print(center)
 
-    temp = center.find('span', id="fan")
     fan_str = center.find('span', id="fan").get_text()
     fan = int(fan_str)
 
     print("-------------------------------------")
-    print(temp)
-    print(type(temp))
     print(fan_str)
     print("fans:", fan)
 
     # print(soup.title.name)
     # print(soup.title.string)
     # print(soup.prettify())
-
 
     # for p_tag in soup.find_all('p'):
     #     if p_tag.has_attr('class'):
@@ -53,6 +55,8 @@ if __name__ == "__main__":
 
     for article in article_list.find_all('div', class_='article-item-box csdn-tracking-statistics'):
         article_name = article.h4.a.get_text()
+        article_name = article_name.strip().\
+            replace('\n', '').replace(' ', '')
         num_info = article.find('div', class_='info-box d-flex align-content-center')
 
         # print(num_info)
@@ -67,7 +71,7 @@ if __name__ == "__main__":
         val_list.append(read_num)
         # print('')
 
-    # print(mainBox.main.prettify())
+    print(mainBox.main.prettify())
     print(labels_list)
     print(val_list)
     vals = [1, 2, 3, 4]  # 创建数据系列
