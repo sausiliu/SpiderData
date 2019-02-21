@@ -1,14 +1,24 @@
-import re
 import ssl
+import matplotlib
 from urllib import request
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
+#from matplotlib.font_manager import FontProperties
 
 from pylab import mpl
 
-mpl.rcParams['font.sans-serif'] = ['FangSong']
-mpl.rcParams['axes.unicode_minus'] = False
+from matplotlib.font_manager import _rebuild
+_rebuild() #reload一下
+
+# font = FontProperties(fname='/Library/Fonts/Songti.ttc')
+print(matplotlib.Path())
+print(matplotlib.get_data_path() )
+print(matplotlib.get_configdir() )
+print(matplotlib.matplotlib_fname())
 print(mpl.font_manager.get_cachedir())
+
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+mpl.rcParams['axes.unicode_minus'] = False
 
 context = ssl._create_unverified_context()
 url = "https://blog.csdn.net/richard_liujh"
