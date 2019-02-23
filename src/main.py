@@ -3,14 +3,14 @@ import matplotlib
 from urllib import request
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
-#from matplotlib.font_manager import FontProperties
+# from matplotlib.font_manager import FontProperties
 
 from pylab import mpl
 
 from matplotlib.font_manager import _rebuild
 _rebuild() #reload一下
 
-# font = FontProperties(fname='/Library/Fonts/Songti.ttc')
+# font = FontProperties(fname='./SimHei.ttf')
 print(matplotlib.Path())
 print(matplotlib.get_data_path() )
 print(matplotlib.get_configdir() )
@@ -32,21 +32,21 @@ if __name__ == "__main__":
     soup = BeautifulSoup(html, "lxml")
     # print(soup.prettify())
     # print(soup.body)
-    print("dl:")
+    # print("dl:")
     # print(soup.dl)
 
-    for center in soup.find_all('dl', class_='text-center'):
-        print(center)
+    # for center in soup.find_all('dl', class_='text-center'):
+        #print(center)
 
     center = soup.find('dl', class_='text-center', id='fanBox')
-    print(center)
+    # print(center)
 
     fan_str = center.find('span', id="fan").get_text()
     fan = int(fan_str)
 
-    print("-------------------------------------")
-    print(fan_str)
-    print("fans:", fan)
+    # print("-------------------------------------")
+    # print(fan_str)
+    # print("fans:", fan)
 
     # print(soup.title.name)
     # print(soup.title.string)
@@ -75,15 +75,15 @@ if __name__ == "__main__":
             continue
 
         read_num = int(read_info.get_text())
-        print(article_name)
-        print(read_num)
+        # print(article_name)
+        # print(read_num)
         labels_list.append(article_name)
         val_list.append(read_num)
         # print('')
 
-    print(mainBox.main.prettify())
-    print(labels_list)
-    print(val_list)
+    # print(mainBox.main.prettify())
+    # print(labels_list)
+    # print(val_list)
     vals = [1, 2, 3, 4]  # 创建数据系列
     fig, ax = plt.subplots()  # 创建子图
     labels = 'A', 'B', 'C', 'D'
