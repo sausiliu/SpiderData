@@ -91,6 +91,6 @@ if __name__ == "__main__":
     # explode = (0, 0.1, 0, 0)
     # ax.pie(val_list, explode=explode, labels=labels_list, colors=colors,
     ax.pie(val_list, labels=labels_list, autopct='%1.1f%%', shadow=True, startangle=90, radius=1.2)
-    ax.set(aspect="equal", title='Pie plot with `ax.pie`')  # 设置标题以及图形的对称
+    ax.set(aspect="equal", title='xxxxxx')  # 设置标题以及图形的对称
     plt.show()
 
